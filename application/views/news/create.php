@@ -4,12 +4,10 @@
 
 <?php echo form_open('news/create'); ?>
 
-<label for="title">Title</label>
-<input type="input" name="title"/><br/>
-
-<label for="text">Text</label>
-<textarea name="text"></textarea><br/>
-
+<label for="person">Person</label><input type="input" name="person"/><br/>
+<label for="day">Day</label><input type="input" name="day"/><br/>
+<label for="month">Month</label><input type="input" name="month"/><br/>
+<label for="year">Year</label><input type="input" name="year"/><br/>
 <input type="submit" name="submit" value="Create news item"/>
 
 </form>

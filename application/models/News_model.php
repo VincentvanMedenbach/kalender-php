@@ -22,12 +22,16 @@ class News_model extends CI_Model
     {
         $this->load->helper('url');
 
-        $slug = url_title($this->input->post('title'), 'dash', TRUE);
+        $slug = url_title($this->input->post('person'), 'dash', TRUE);
 
         $data = array(
-            'title' => $this->input->post('title'),
+            'year' => $this->input->post('year'),
+            'day' => $this->input->post('day'),
+            'month' => $this->input->post('month'),
+            'person' => $this->input->post('person'),
+
             'slug' => $slug,
-            'text' => $this->input->post('text')
+
         );
 
         return $this->db->insert('news', $data);
