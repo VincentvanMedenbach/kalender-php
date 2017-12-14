@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $route['news/create'] = 'news/create';
 $route['news/succes'] = 'news/succes';
+$route['news/edit/(:any)'] = 'news/edit/$1';
 $route['news/(:any)'] = 'news/view/$1';
 $route['news'] = 'news';
 $route['(:any)'] = 'pages/view/$1';

@@ -10,11 +10,11 @@ class News_model extends CI_Model
     public function get_news($slug = FALSE)
     {
         if ($slug === FALSE) {
-            $query = $this->db->get('news');
+            $query = $this->db->get('newsBoi');
             return $query->result_array();
         }
 
-        $query = $this->db->get_where('news', array('slug' => $slug));
+        $query = $this->db->get_where('newsBoi', array('slug' => $slug));
         return $query->row_array();
     }
 
@@ -29,11 +29,33 @@ class News_model extends CI_Model
             'day' => $this->input->post('day'),
             'month' => $this->input->post('month'),
             'person' => $this->input->post('person'),
-
             'slug' => $slug,
 
         );
 
-        return $this->db->insert('news', $data);
+        return $this->db->insert('newsBoi', $data);
+    }
+    public function edit_news()
+    {
+        $this->load->helper('url');
+
+        $slug = url_title($this->input->post('person'), 'dash', TRUE);
+
+        $data = array(
+            'year' => $this->input->post('year'),
+            'day' => $this->input->post('day'),
+            'month' => $this->input->post('month'),
+            'person' => $this->input->post('person'),
+            'slug' => $slug,
+
+        );
+
+        $this->db->where('id',$slug);
+        return $this->db->update('newsBoi', $data);
+    }
+
+    public function delete_news($slug){
+        $this->db->where('slug', $slug);
+        $this->db->delete('newsBoi');
     }
 }

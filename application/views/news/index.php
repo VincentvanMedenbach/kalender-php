@@ -3,14 +3,11 @@
 
 <?php foreach ($news as $news_item): ?>
     <p>
-        <a href="edit.php?">
+        <a href="<?php echo site_url('news/edit/' . $news_item['slug']); ?>">">
             <?php echo $news_item['person']." (".$news_item['year'].")" ?></a>
 
-        <a href="delete.php?id=4">x</a>
+        <a href="<?php echo site_url('news/delete/' . $news_item['slug']); ?>">">x</a>
     </p>
-
-
-    <p><a href="<?php echo site_url('news/' . $news_item['slug']); ?>">View article</a></p>
 
 <?php endforeach; ?>
 <p><a href="news/create">+ Toevoegen</a></p>
