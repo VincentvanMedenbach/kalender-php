@@ -1,1 +1,1 @@
-<a href="index.php/news"> welcome to our website!</a>
+<a href="<?php echo site_url('news'); ?>"> welcome to our website!</a>

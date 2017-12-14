@@ -93,10 +93,11 @@ class News extends CI_Controller
 
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('templates/header', $data);
-            $this->load->view('news/edit');
+            $this->load->view('news/edit', $data);
 
         } else {
-            $this->News_model->edit_news();
+            $slug = url_title($this->input->post('person'), 'dash', TRUE);
+            $this->News_model->edit_news($slug);
             $this->load->view('news/success');
         }
     }

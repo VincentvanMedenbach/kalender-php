@@ -35,12 +35,8 @@ class News_model extends CI_Model
 
         return $this->db->insert('newsBoi', $data);
     }
-    public function edit_news()
+    public function edit_news($slug)
     {
-        $this->load->helper('url');
-
-        $slug = url_title($this->input->post('person'), 'dash', TRUE);
-
         $data = array(
             'year' => $this->input->post('year'),
             'day' => $this->input->post('day'),
@@ -49,9 +45,9 @@ class News_model extends CI_Model
             'slug' => $slug,
 
         );
-
-        $this->db->where('id',$slug);
-        return $this->db->update('newsBoi', $data);
+        $this->db->where('slug',$slug);
+        $this->db->replace('newsBoi', $data);
+        return;
     }
 
     public function delete_news($slug){
