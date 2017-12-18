@@ -18,7 +18,30 @@ class News_model extends CI_Model
         return $query->row_array();
     }
 
-    public function set_news()
+    public function list_news()
+    {
+        $this->db->select('month as months, day as days,year,person,slug,id');
+        $this->db->order_by("months", "DESC");
+        $this->db->order_by("days", "DESC");
+        $this->db->group_by(array("months", "days"));
+        $query = $this->db->get('newsBoi');
+        $listed = array();
+        if ($results = $query->result()) {
+            foreach ($results as $result) {
+                $listed[$result->months][] = $result;
+//                var_dump($results);
+//                var_dump($result);
+//                var_dump($result->months);
+//                var_dump($results);
+            }
+        }
+        return $listed;
+
+
+    }
+
+    public
+    function set_news()
     {
         $this->load->helper('url');
 
@@ -35,7 +58,9 @@ class News_model extends CI_Model
 
         return $this->db->insert('newsBoi', $data);
     }
-    public function edit_news($slug)
+
+    public
+    function edit_news($slug)
     {
         $data = array(
             'year' => $this->input->post('year'),
@@ -45,12 +70,14 @@ class News_model extends CI_Model
             'slug' => $slug,
 
         );
-        $this->db->where('slug',$slug);
+        $this->db->where('slug', $slug);
         $this->db->replace('newsBoi', $data);
         return;
     }
 
-    public function delete_news($slug){
+    public
+    function delete_news($slug)
+    {
         $this->db->where('slug', $slug);
         $this->db->delete('newsBoi');
     }

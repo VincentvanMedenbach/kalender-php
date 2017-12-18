@@ -11,7 +11,7 @@ class News extends CI_Controller
 
     public function index()
     {
-        $data['news'] = $this->News_model->get_news();
+        $data['indexMonths'] = $this->News_model->list_news();
         $data['title'] = 'News archive';
 
         $this->load->view('templates/header', $data);
