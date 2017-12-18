@@ -21,9 +21,9 @@ class News_model extends CI_Model
     public function list_news()
     {
         $this->db->select('month as months, day as days,year,person,slug,id');
-        $this->db->order_by("months", "DESC");
-        $this->db->order_by("days", "DESC");
-        $this->db->group_by(array("months", "days"));
+        $this->db->order_by("months", "ASC");
+        $this->db->order_by("days", "ASC");
+//        $this->db->group_by(array("months", "days"));
         $query = $this->db->get('newsBoi');
         $listed = array();
         if ($results = $query->result()) {
@@ -32,9 +32,11 @@ class News_model extends CI_Model
 //                var_dump($results);
 //                var_dump($result);
 //                var_dump($result->months);
-//                var_dump($results);
+
             }
         }
+//        var_dump($results);
+//        var_dump($query->result());
         return $listed;
 
 
